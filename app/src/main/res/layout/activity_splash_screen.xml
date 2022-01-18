@@ -44,10 +44,28 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="325dp"
-        android:layout_height="508dp"
+        android:layout_width="371dp"
+        android:layout_height="471dp"
         android:src="@drawable/regestered"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.428" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="384dp"
+        android:layout_height="104dp"
+        android:fontFamily="@font/aclonica"
+        android:paddingTop="12dp"
+        android:text="German - Grade"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"
+        android:textColor="#009688"
+        android:textSize="39sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
