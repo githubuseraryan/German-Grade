@@ -1,10 +1,12 @@
 package appcom.example.germangrade;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -22,12 +24,13 @@ public class MainActivity extends AppCompatActivity {
     //String[] No1 = new String[]{"0"};
     //String[] No2 = new String[]{"0"};
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
        // Toolbar toolbar = findViewById(R.id.toolbar);
-        final EditText editText1 = (EditText)findViewById(R.id.editTextNumber);
+        final EditText edt = (EditText)findViewById(R.id.editTextNumber);
         final EditText editText2 = (EditText)findViewById(R.id.editTextNumber2);
         final EditText editText3 = findViewById(R.id.editTextNumber3);
         final Button button=findViewById(R.id.button);
@@ -37,14 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
         //ValueOne = Float.parseFloat(editText1.getText().toString());
         //ValueTwo = Float.parseFloat(editText2.getText().toString());
-         String No1 = editText1.getText().toString();
-          String No2 = editText2.getText().toString();
-         ValueOne= Float.parseFloat(No1.trim().isEmpty()?"75":No1);
-         ValueTwo= Float.parseFloat(No2.trim().isEmpty()?"30":No1);
-        editText1.setOnClickListener(new View.OnClickListener() {
+         final String No1 = edt.getText().toString();
+          final String No2 = editText2.getText().toString();
+         ValueOne= Float.parseFloat(No1.trim().isEmpty()?"0":No1);
+         ValueTwo= Float.parseFloat(No2.trim().isEmpty()?"0":No1);
+        edt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               editText1.setTextColor(0xFF06E858 );
+               edt.setTextColor(0xFF06E858 );
             }
         });
         editText2.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ValueOne==0)
+                if(No1.equals(null))
                     Toast.makeText(getApplicationContext(),"You have not entered Number Obtained",Toast.LENGTH_SHORT).show();
                 else if(ValueTwo==0)
                     Toast.makeText(getApplicationContext(),"You did not entered min Pass Number",Toast.LENGTH_SHORT).show();
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 ValueThree = (float)(100 - ValueOne);
                 ValueFour = (float)(100 - ValueTwo);
                 ValueFive = ((float)ValueThree) / ValueFour * 3;
-                editText3.setText(No2  );
+                editText3.setText(No2 +1 );
 
             }
 
