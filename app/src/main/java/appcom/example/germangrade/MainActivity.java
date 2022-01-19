@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.InputType;
 import android.view.View;
 
 import android.view.Menu;
@@ -18,22 +19,28 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     float ValueOne, ValueTwo, ValueThree,ValueFour,ValueFive;
+    //String[] No1 = new String[]{"0"};
+    //String[] No2 = new String[]{"0"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
        // Toolbar toolbar = findViewById(R.id.toolbar);
-        final EditText editText1 = findViewById(R.id.editTextNumber);
-        final EditText editText2 = findViewById(R.id.editTextNumber2);
+        final EditText editText1 = (EditText)findViewById(R.id.editTextNumber);
+        final EditText editText2 = (EditText)findViewById(R.id.editTextNumber2);
         final EditText editText3 = findViewById(R.id.editTextNumber3);
         final Button button=findViewById(R.id.button);
+        //editText1.setInputType(InputType.TYPE_CLASS_NUMBER);
+        //editText1.setInputType(InputType.TYPE_CLASS_NUMBER);
         //setSupportActionBar(toolbar);
 
-        ValueOne = Float.parseFloat(editText1.getText() + "");
-        ValueTwo = Float.parseFloat(editText2.getText() + "");
-         final String No1 = editText1.getText().toString();
-         final String No2 = editText1.getText().toString();
+        //ValueOne = Float.parseFloat(editText1.getText().toString());
+        //ValueTwo = Float.parseFloat(editText2.getText().toString());
+         String No1 = editText1.getText().toString();
+          String No2 = editText2.getText().toString();
+         ValueOne= Float.parseFloat(No1.trim().isEmpty()?"75":No1);
+         ValueTwo= Float.parseFloat(No2.trim().isEmpty()?"30":No1);
         editText1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(No1.isEmpty())
+                if(ValueOne==0)
                     Toast.makeText(getApplicationContext(),"You have not entered Number Obtained",Toast.LENGTH_SHORT).show();
-                else if(No2.isEmpty())
+                else if(ValueTwo==0)
                     Toast.makeText(getApplicationContext(),"You did not entered min Pass Number",Toast.LENGTH_SHORT).show();
                 else if(ValueOne>100 || ValueOne<0)
                     Toast.makeText(getApplicationContext(),"Please Enter Your Number within 0 and 100 ",Toast.LENGTH_LONG).show();
@@ -59,23 +66,25 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Please Enter Your Number within 0 and 100 ",Toast.LENGTH_LONG).show();
                 else if(ValueOne<100 || ValueOne>0 && ValueTwo<100 || ValueTwo>0)
                     button.setBackgroundColor(0xFF7B241C);
-                    GermanGradeFormula();
+                ValueThree = (float)(100 - ValueOne);
+                ValueFour = (float)(100 - ValueTwo);
+                ValueFive = ((float)ValueThree) / ValueFour * 3;
+                editText3.setText(No2  );
 
             }
 
             });
         }
 
-    private void GermanGradeFormula() {
+   /*public void GermanGradeFormula() {
         final EditText editText3 = findViewById(R.id.editTextNumber3);
-        ValueThree = 100 - ValueOne;
-        ValueFour = 100 - ValueTwo;
-        ValueFive = (ValueThree / ValueFour) * 3;
-        editText3.setText(ValueFive + 1 + "");
+        ValueThree = (float)(100 - ValueOne);
+        ValueFour = (float)(100 - ValueTwo);
+        ValueFive = ((float)ValueThree) / ValueFour * 3;
+        editText3.setText(ValueOne +1 + "");*/
 
 
     };
 
 
 
-}
